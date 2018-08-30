@@ -12,14 +12,12 @@ namespace RPG.Characters
         //[SerializeField] AudioClip pickUpSFX;
 
         AudioSource audioSource;
-
-        // Use this for initialization
+        
         void Start()
         {
             //audioSource = GetComponent<AudioSource>();
         }
-
-        // Update is called once per frame
+        
         void Update()
         {
             if (!Application.isPlaying)
@@ -46,8 +44,11 @@ namespace RPG.Characters
 
         private void OnTriggerEnter(Collider other)
         {
-            FindObjectOfType<PlayerControl>().GetComponent<WeaponSystem>().PutWeaponInHand(weaponConfig);
-            //audioSource.PlayOneShot(pickUpSFX);
+            if (other.gameObject.GetComponent<PlayerControl>())
+            {
+                FindObjectOfType<PlayerControl>().GetComponent<WeaponSystem>().PutWeaponInHand(weaponConfig);
+                //audioSource.PlayOneShot(pickUpSFX);
+            }
         }
     }
 }
