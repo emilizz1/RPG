@@ -71,7 +71,7 @@ namespace RPG.Characters
             yield return new WaitForSecondsRealtime(clip.length);
             if(playerComponent && playerComponent.isActiveAndEnabled)
             {
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(1);
             }
             else
             {
