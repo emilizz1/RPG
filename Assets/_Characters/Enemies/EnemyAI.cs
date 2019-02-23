@@ -45,13 +45,7 @@ namespace RPG.Characters
                 bool inWeaponRange = distanceToPlayer <= currentWeaponRange;
                 bool inChaseRange = distanceToPlayer > currentWeaponRange && distanceToPlayer <= chaseRadius;
                 bool outsideChaseRange = distanceToPlayer > chaseRadius;
-
-                if (outsideChaseRange && state != State.patrolling)
-                {
-                    StopAllCoroutines();
-                    weaponSystem.StopAttacking();
-                    StartCoroutine(Patrol());
-                }
+                
                 if (inChaseRange)
                 {
                     StopAllCoroutines();
@@ -59,11 +53,17 @@ namespace RPG.Characters
                     StartCoroutine(ChasePlayer());
                     character.ReturnAnimationFowardCap();
                 }
-                if (inWeaponRange)
+                else if (inWeaponRange)
                 {
                     StopAllCoroutines();
                     state = State.attacking;
                     weaponSystem.AttackTarget(player.gameObject);
+                }
+                else if (outsideChaseRange && state != State.patrolling)
+                {
+                    StopAllCoroutines();
+                    weaponSystem.StopAttacking();
+                    StartCoroutine(Patrol());
                 }
             }
             else
