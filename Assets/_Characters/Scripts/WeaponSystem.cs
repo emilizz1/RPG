@@ -51,7 +51,7 @@ namespace RPG.Characters
                 StopAllCoroutines();
             }
 
-            if(target != null && !targetIsDead)
+            if(target != null && !targetIsDead && !characterIsDead)
             {
                 transform.LookAt(target.transform);
             }

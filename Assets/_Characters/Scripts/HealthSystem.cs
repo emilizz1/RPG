@@ -69,9 +69,9 @@ namespace RPG.Characters
                 levelUp.AddKill();
             }
             yield return new WaitForSecondsRealtime(clip.length);
-            if(playerComponent && playerComponent.isActiveAndEnabled)
+            if(playerComponent)
             {
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene(0);
             }
             else
             {
