@@ -50,6 +50,11 @@ namespace RPG.Characters
             {
                 StopAllCoroutines();
             }
+
+            if(target != null && !targetIsDead)
+            {
+                transform.LookAt(target.transform);
+            }
         }
 
         public void PutWeaponInHand(WeaponConfig weaponToUse)
