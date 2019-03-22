@@ -5,7 +5,8 @@ using UnityEngine;
 public class StartGame : MonoBehaviour
 {
     [SerializeField] GameObject[] objectsToTurnOn;
-    [SerializeField] GameObject startGameImage;
+    [SerializeField] GameObject[] objectsToDestroy;
+    [SerializeField] GameObject howToPlay;
 
     void Start()
     {
@@ -22,8 +23,16 @@ public class StartGame : MonoBehaviour
         {
             gameO.SetActive(true);
         }
-        Destroy(startGameImage);
+        foreach (GameObject gameO in objectsToDestroy)
+        {
+            Destroy(gameO);
+        }
         Time.timeScale = 1f;
         Destroy(gameObject);
+    }
+
+    public void TurnOnHowToPlay()
+    {
+        howToPlay.SetActive(true);
     }
 }
